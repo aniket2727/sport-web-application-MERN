@@ -1,19 +1,52 @@
-
-
-
-import React from 'react'
-import { useSelector, useDispatch } from 'react-redux';
-
+import React from 'react';
+import { useSelector } from 'react-redux';
+import { FaUser, FaShoppingCart, FaShoppingBag } from 'react-icons/fa';
+import './navbar.css';
 
 const Navbarcomponets = () => {
-    const userEmail = useSelector((state) => state.user.email);
-  const userToken = useSelector((state) => state.user.token); // Add this line
-  const dispatch = useDispatch();
-  return (
-    <div>
-      <h1>name{userEmail}</h1>
-    </div>
-  )
-}
+  var userEmail = useSelector((state) => state.user.email);
+  userEmail="aniket"
 
-export default Navbarcomponets
+  return (
+    <div className='main-navbar-a'>
+      <div className='sub-navbar-a'>
+        <div className='navbar-logo-a'>
+          <h1>Prime Sports</h1>
+        </div>
+
+        <div className='navbar-input-a'>
+          <input />
+        </div>
+
+        <div className='navbar-login-status-a'>
+          {
+            userEmail ? (
+              <button className='logout-btn'>
+                <FaUser />
+                Logout
+              </button>
+            ) : (
+              <button className='login-btn'>
+                <FaUser />
+                Login
+              </button>
+            )
+          }
+        </div>
+
+        <div className='navbar-cart-shop-a'>
+          <button className='cart-btn'>
+            <FaShoppingCart />
+            Cart
+          </button>
+          <button className='shop-btn'>
+            <FaShoppingBag />
+            Shop
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Navbarcomponets;
