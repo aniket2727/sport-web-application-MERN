@@ -7,11 +7,9 @@ import './navbar.css';
 const Navbarcomponets = () => {
   const dispatch=useDispatch()
   var userEmail = useSelector((state) => state.user.email);
-  userEmail="aniket"
   
   const handleLogout = () => {
     dispatch(logoutUser());
-    console.log('logout is called');
   };
 
 
