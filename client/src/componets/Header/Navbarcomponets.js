@@ -1,11 +1,19 @@
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector,useDispatch } from 'react-redux';
+import { logoutUser } from '../../features/userSlice';
 import { FaUser, FaShoppingCart, FaShoppingBag } from 'react-icons/fa';
 import './navbar.css';
 
 const Navbarcomponets = () => {
+  const dispatch=useDispatch()
   var userEmail = useSelector((state) => state.user.email);
   userEmail="aniket"
+  
+  const handleLogout = () => {
+    dispatch(logoutUser());
+    console.log('logout is called');
+  };
+
 
   return (
     <div className='main-navbar-a'>
@@ -21,7 +29,7 @@ const Navbarcomponets = () => {
         <div className='navbar-login-status-a'>
           {
             userEmail ? (
-              <button className='logout-btn'>
+              <button className='logout-btn' onClick={handleLogout}>
                 <FaUser />
                 Logout
               </button>
