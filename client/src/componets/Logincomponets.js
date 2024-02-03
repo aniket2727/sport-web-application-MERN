@@ -12,12 +12,15 @@ const LoginComponent = () => {
   const handleLogin = (e) => {
     e.preventDefault();
     dispatch(loginUser({ email, password }));
+    setEmail('')
+    setPassword('')
 
   };
 
   return (
     <div className='main-login-a'>
        <form onSubmit={handleLogin} className="login-form">
+         <h1>Login Here</h1>
         <div className="form-group">
           <label>Email:</label>
           <input
@@ -39,6 +42,7 @@ const LoginComponent = () => {
         </div>
 
         <button type="submit">Login</button>
+        <button type="submit">Craete Account</button>
       </form>
     </div>
   );

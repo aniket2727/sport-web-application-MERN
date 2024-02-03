@@ -14,17 +14,41 @@
 
 /* Add this to your styles (e.g., LoginComponent.css) */
 .login-form {
+    width: 60%;
+    height: 500px;
     display: flex;
+    align-items: center;
+    justify-content: center;
     flex-direction: column;
-    max-width: 300px; /* Set a max-width if you want to limit the width of the form */
-    margin: auto; /* Center the form horizontally */
+    margin: 10px;
+    box-shadow: 0px 0px 5px black;
+  }
+
+  .login-form button{
+    width: 50%;
+    border-radius: 10px;
+    padding: 10px;
+    margin: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: large;
+    
   }
   
   .form-group {
     margin-bottom: 15px;
   }
+
+  .form-group  input{
+    width: 100%;
+    cursor: pointer;
+    height: 40px;
+    border-radius: 10px;
+  }
   
   label {
+    width: 100%;
+    font-weight: bold;
     margin-bottom: 5px;
   }
   
