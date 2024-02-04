@@ -1,8 +1,11 @@
 import React from 'react';
 import './products.css';
+import { useNavigate } from 'react-router-dom';
 
 const ProductSelected = () => {
+
   // Dummy product data for demonstration
+  const navigate=useNavigate();
   const products = Array.from({ length: 10 }, (_, index) => ({
     id: index + 1,
     name: `Product ${index + 1}`,
@@ -29,10 +32,10 @@ const ProductSelected = () => {
       </div>
 
       <div className='main-product-list-a'>
-        {products.map((product) => (
-          <div key={product.id} className='product-blocks-a'>
+        {products.map((product,index) => (
+          <div key={product.id} className='product-blocks-a'onClick={()=>navigate(`/primesport/productbuy/${index}`)}>
             <div className='image-a'>
-              {/* Add your image content or component here */}
+          
             </div>
             <div className='caption-a'>
               <h2>{product.name}</h2>
