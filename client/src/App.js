@@ -9,7 +9,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Register from './componets/register/Register';
 import ProductSelected from './componets/productsAccordingtoselected/ProductSelected';
 import Productbuycomponets from './componets/productbuy/Productbuycomponets';
-
+import Cartcomponets from './componets/carts/Cartcomponets';
 function App() {
   return (
     <div>
@@ -22,6 +22,7 @@ function App() {
           <Route path="/primesport/sporttype/:type" element={<Typeofsports />} />
           <Route path="/primesport/producttype/:type" element={<ProductSelected />} />
           <Route path="/primesport/productbuy/:id" element={<Productbuycomponets />} />
+          <Route path="/primesport/cart" element={<Cartcomponets />} />
           <Route path="*" element={<div><h2>Page Not Found</h2><p>The requested page does not exist.</p></div>} />
         </Routes>
         <FooterComponets />

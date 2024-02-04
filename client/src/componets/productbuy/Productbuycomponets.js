@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FaStar } from 'react-icons/fa';
+import { FaUser, FaStar, FaPlus, FaMinus, FaBook } from 'react-icons/fa';
 import './productbuy.css';
 
 const Productbuycomponets = () => {
@@ -23,9 +23,17 @@ const Productbuycomponets = () => {
             <div className='product-image-a'></div>
 
             <div className='product-info-address'>
-                <h1>name</h1>
-                <h1>captions</h1>
-                <h1>price</h1>
+                <h1>
+                    <FaUser style={{ marginRight: '5px' }} />
+                    name
+                </h1>
+                <h1>
+                    <FaBook style={{ marginRight: '5px' }} />
+                    captions
+                </h1>
+                <h1>
+                    price
+                </h1>
 
                 <div className='star-icons'>
                     {[...Array(4)].map((_, index) => (
@@ -34,9 +42,13 @@ const Productbuycomponets = () => {
                 </div>
 
                 <div className='product-button-a'>
-                    <button onClick={handleIncrease}>+</button>
+                    <button onClick={handleIncrease}>
+                        <FaPlus />
+                    </button>
                     <h1>{count}</h1>
-                    <button onClick={handleDecrease}>-</button>
+                    <button onClick={handleDecrease}>
+                        <FaMinus />
+                    </button>
                 </div>
 
                 <div className='main-address-a'>

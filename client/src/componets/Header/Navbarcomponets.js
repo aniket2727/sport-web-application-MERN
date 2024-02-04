@@ -3,8 +3,10 @@ import { useSelector,useDispatch } from 'react-redux';
 import { logoutUser } from '../../features/userSlice';
 import { FaUser, FaShoppingCart, FaShoppingBag } from 'react-icons/fa';
 import './navbar.css';
-
+import { useNavigate } from 'react-router-dom';
 const Navbarcomponets = () => {
+
+  const navigate=useNavigate();
   const dispatch=useDispatch()
   var userEmail = useSelector((state) => state.user.email);
   
@@ -32,7 +34,7 @@ const Navbarcomponets = () => {
                 Logout
               </button>
             ) : (
-              <button className='login-btn'>
+              <button className='login-btn' onClick={()=>navigate('/primesport/login')}>
                 <FaUser />
                 Login
               </button>
@@ -41,7 +43,7 @@ const Navbarcomponets = () => {
         </div>
 
         <div className='navbar-cart-shop-a'>
-          <button className='cart-btn'>
+          <button className='cart-btn' onClick={()=>navigate('/primesport/login')}>
             <FaShoppingCart />
             Cart
           </button>

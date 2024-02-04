@@ -50,6 +50,7 @@
 }
 
 .main-address-a input{
+    cursor: pointer;
     padding: 10px;
     border-radius: 10px;
     margin: 10px;
@@ -67,6 +68,7 @@
 
 
 .main-address-a button{
+    font-weight: bold;
     padding: 10px;
     border-radius: 10px;
     margin: 10px;
@@ -74,5 +76,6 @@
     border: none;
     background-color: rgb(240, 240, 33);
     border: 2px solid whitesmoke;
+    cursor: pointer;
 
 }
