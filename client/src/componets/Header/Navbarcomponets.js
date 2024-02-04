@@ -12,6 +12,7 @@ const Navbarcomponets = () => {
   
   const handleLogout = () => {
     dispatch(logoutUser());
+    navigate('/primesport/login')
   };
 
 
@@ -19,7 +20,7 @@ const Navbarcomponets = () => {
     <div className='main-navbar-a'>
       <div className='sub-navbar-a'>
         <div className='navbar-logo-a'>
-          <h1>Prime Sports</h1>
+          <h1 onClick={()=>navigate('/primesport/productpagefirst')}>Prime Sports</h1>
         </div>
 
         <div className='navbar-input-a'>
@@ -43,11 +44,11 @@ const Navbarcomponets = () => {
         </div>
 
         <div className='navbar-cart-shop-a'>
-          <button className='cart-btn' onClick={()=>navigate('/primesport/login')}>
+          <button className='cart-btn' onClick={()=>navigate('/primesport/cart')}>
             <FaShoppingCart />
             Cart
           </button>
-          <button className='shop-btn'>
+          <button className='shop-btn' onClick={()=>navigate('/primesport/shopinghistory')}>
             <FaShoppingBag />
             Shop
           </button>
