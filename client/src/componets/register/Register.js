@@ -1,8 +1,9 @@
 // Register.js
 import React, { useState } from 'react';
 import './register.css';
-
+import { useNavigate } from 'react-router-dom';
 const Register = () => {
+  const navigate=useNavigate()
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -27,6 +28,8 @@ const Register = () => {
       console.log('Invalid email or password');
       return;
     }
+
+    navigate('/primesport/login')
 
     // Add logic to register the user (send data to the server, etc.)
   };
