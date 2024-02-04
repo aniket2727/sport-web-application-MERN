@@ -16,7 +16,6 @@ function App() {
         <Routes>
           <Route path="/primesport/login" element={<LoginComponent />} />
           <Route path="/primesport/register" element={<Register />} />
-          {/* Updated order of routes */}
           <Route path="/primesport/productpagefirst" element={<Frontpagecomponets />} />
           <Route path="/primesport/sporttype/:type" element={<Typeofsports />} />
           <Route path="*" element={<div><h2>Page Not Found</h2><p>The requested page does not exist.</p></div>} />

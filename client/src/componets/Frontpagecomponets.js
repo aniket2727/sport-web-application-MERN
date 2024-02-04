@@ -80,7 +80,6 @@ const Frontpagecomponets = () => {
               <img
                 src={link}
                 alt={`${name} Item`}
-                onClick={() => navigate(`primesport/sporttype/${name}`)}
               />
             </div>
           ))}
