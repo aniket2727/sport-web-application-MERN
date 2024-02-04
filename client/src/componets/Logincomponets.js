@@ -16,7 +16,6 @@ const LoginComponent = () => {
     dispatch(loginUser({ email, password }));
     setEmail('')
     setPassword('')
-
     navigte('/primesport/productpagefirst')
 
   };
@@ -46,7 +45,7 @@ const LoginComponent = () => {
         </div>
 
         <button type="submit">Login</button>
-        <button type="submit">Craete Account</button>
+        <button type="submit" onClick={()=>navigte('/primesport/register')}>Craete Account</button>
       </form>
     </div>
   );
