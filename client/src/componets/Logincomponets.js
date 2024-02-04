@@ -1,6 +1,6 @@
 // LoginComponent.js
 import React, { useState } from 'react';
-import { useDispatch  } from 'react-redux'; // Fix: Change UseSelector to useSelector
+import { useDispatch  } from 'react-redux'; 
 import { loginUser } from '../features/userSlice';
 import './login.css'
 import { useNavigate } from 'react-router-dom';

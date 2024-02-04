@@ -12,26 +12,20 @@ const Register = () => {
 
   const handleEmailChange = (value) => {
     setEmail(value);
-    // Validate email using regex
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     setEmailError(emailRegex.test(value) ? '' : 'Invalid email address');
   };
 
   const handleRegister = (e) => {
     e.preventDefault();
-
-    // Add your registration logic here
     console.log('Registration data:', { name, email, password, confirmPassword });
 
-    // Validate email and password
     if (emailError || password.length < 6 || password !== confirmPassword) {
       console.log('Invalid email or password');
       return;
     }
-
     navigate('/primesport/login')
 
-    // Add logic to register the user (send data to the server, etc.)
   };
 
   return (
