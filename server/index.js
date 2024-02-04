@@ -10,11 +10,13 @@ app.use(cookieParser());
 
 app.use(cors());
 const registerRouter = require('./router/register.router'); // register
+const loginRouter = require('./router/login.router'); // login
 
 
 app.use(express.json());
 require('./database/config');
 app.use('/hooks/register', registerRouter);   // for register user
+app.use('/hooks/login', loginRouter);  // for the login user
 
 
 
