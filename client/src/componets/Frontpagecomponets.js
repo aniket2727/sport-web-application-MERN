@@ -69,7 +69,9 @@ const Frontpagecomponets = () => {
         <div className='small-box-row'>
           {cricketitems.map((item, index) => (
             <div className='small-box' key={index}>
-              <img src={item.ball} alt={`Cricket Ball ${index + 1}`} />
+              <img src={item.ball} alt={`Cricket Ball ${index + 1}`} 
+              onClick={() => navigate(`/primesport/producttype/${'cricket'}`)}
+              />
             </div>
           ))}
         </div>
