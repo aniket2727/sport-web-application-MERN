@@ -11,8 +11,9 @@ app.use(cookieParser());
 app.use(cors());
 const registerRouter = require('./router/register.router'); // register
 const loginRouter = require('./router/login.router'); // login
-
+// images fetched routers
 const getimage = require('./router/sportimage.router'); // Corrected import
+const getproductinfo=require('./router/getproductinfor.Router')   //get all product info
 
 
 
@@ -23,7 +24,7 @@ require('./database/config');
 app.use('/hooks/register', registerRouter);   // for register user
 app.use('/hooks/login', loginRouter);  // for the login user
 app.use('/hooks/getimage', getimage); // Corrected usage
-
+app.use('/hooks/getallproduct',getproductinfo) // get all product info
 
 
 
