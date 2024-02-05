@@ -12,11 +12,17 @@ app.use(cors());
 const registerRouter = require('./router/register.router'); // register
 const loginRouter = require('./router/login.router'); // login
 
+const getimage = require('./router/sportimage.router'); // Corrected import
+
+
+
 
 app.use(express.json());
 require('./database/config');
+
 app.use('/hooks/register', registerRouter);   // for register user
 app.use('/hooks/login', loginRouter);  // for the login user
+app.use('/hooks/getimage', getimage); // Corrected usage
 
 
 
