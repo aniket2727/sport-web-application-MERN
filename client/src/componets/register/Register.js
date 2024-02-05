@@ -28,7 +28,7 @@ const Register = () => {
     }
 
     try {
-      const result = await handleregister({ name, email, password });
+      const result = await handleregister({ name, email, pass:password});
 
       if (!result) {
         navigate('/primesport/login');

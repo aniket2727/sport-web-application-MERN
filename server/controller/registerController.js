@@ -1,9 +1,3 @@
-
-
-
-
-
-
 // register.controller.js
 const express = require('express');
 const router = express.Router();
@@ -12,9 +6,8 @@ const User = require('../database/userInfoSchema');
 
 router.post('/register', async (req, res) => {
   try {
-    const { email, name, pass} = req.body;
+    const { email, name, pass } = req.body; // Use 'pass' instead of 'password'
 
-    
     const existingUser = await User.findOne({ email });
     if (existingUser) {
       return res.status(400).json({ error: 'Email is already registered' });
@@ -23,10 +16,10 @@ router.post('/register', async (req, res) => {
     const newUser = new User({
       email,
       name,
-      pass // Ensure the field name is 'password'
+      pass // Ensure the field name is 'pass'
     });
-    await newUser.save();
-
+    const result = await newUser.save();
+    console.log("result in register", result);
     res.status(201).json({ message: 'User registered successfully' });
   } catch (error) {
     console.error(error);

@@ -19,6 +19,28 @@ const handleregister = async ({email,name,pass}) => {
   }
 };
 
+
+
+const handlelogin = async ({ email, pass }) => {
+    try {
+      const result = await fetch(`${base_url}/login/login`, {
+        method: 'POST', // Use 'POST' instead of 'post'
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ email, pass }), // Correct case for 'pass'
+      });
+  
+      const data = await result.json(); // Correct case for 'json'
+      console.log(result);
+      return data;
+    } catch (error) {
+      console.error('Error during login:', error);
+      throw error; // Rethrow the error for handling at the calling site
+    }
+  };
+  
 module.exports = {
   handleregister,
+  handlelogin,
 };
