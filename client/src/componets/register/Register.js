@@ -1,9 +1,12 @@
 // Register.js
+// Register.js
 import React, { useState } from 'react';
 import './register.css';
 import { useNavigate } from 'react-router-dom';
+import { handleregister } from '../handleAPI/handleapis';
+
 const Register = () => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -16,16 +19,23 @@ const Register = () => {
     setEmailError(emailRegex.test(value) ? '' : 'Invalid email address');
   };
 
-  const handleRegister = (e) => {
+  const handleRegister = async (e) => {
     e.preventDefault();
-    console.log('Registration data:', { name, email, password, confirmPassword });
 
     if (emailError || password.length < 6 || password !== confirmPassword) {
       console.log('Invalid email or password');
       return;
     }
-    navigate('/primesport/login')
 
+    try {
+      const result = await handleregister({ name, email, password });
+
+      if (!result) {
+        navigate('/primesport/login');
+      }
+    } catch (error) {
+      console.error('Error during registration:', error);
+    }
   };
 
   return (
