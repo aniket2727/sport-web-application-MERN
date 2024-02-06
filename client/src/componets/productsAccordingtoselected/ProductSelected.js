@@ -1,46 +1,66 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './products.css';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
+import { handleproductinfo } from '../handleAPI/handleapis';
 
 const ProductSelected = () => {
+  const navigate = useNavigate();
+  const [getallproductinfo, setallproductinfo] = useState([]);
+  const { producttype } = useParams();
+  console.log("data of params", producttype);
 
-  // Dummy product data for demonstration
-  const navigate=useNavigate();
-  const products = Array.from({ length: 10 }, (_, index) => ({
-    id: index + 1,
-    name: `Product ${index + 1}`,
-    price: `$${(index + 1) * 10}`,
-    caption: `Product ${index + 1} Caption`,
-  }));
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await handleproductinfo();
+        const data = await response.getresult;
+        setallproductinfo(data);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
 
   return (
     <div className='main-product-lista-a'>
       <div className='main-price-selection'>
-          <h1>sort by price</h1>
-          <label> Greater than 1000<input type='checkbox'/></label>
-          <label> Greater than 700<input type='checkbox'/></label>
-          <label> Greater than 800<input type='checkbox'/></label>
-          <label> Greater than 500<input type='checkbox'/></label>
+        <h1>Sort by price</h1>
+        <label>
+          Greater than 1000
+          <input type='checkbox' />
+        </label>
+        <label>
+          Greater than 700
+          <input type='checkbox' />
+        </label>
+        {/* Add more checkboxes as needed for different price ranges */}
 
-          <h1>sort by brand</h1>
-          <label> Addidas<input type='checkbox'/></label>
-          <label> Nick<input type='checkbox'/></label>
-          <label> Puma<input type='checkbox'/></label>
-          <label> Jorden<input type='checkbox'/></label>
+        <h1>Sort by brand</h1>
+        <label>
+          Adidas
+          <input type='checkbox' />
+        </label>
+        <label>
+          Nike
+          <input type='checkbox' />
+        </label>
+        {/* Add more checkboxes for different brands if necessary */}
 
-          <button>submit</button>
+        <button>Submit</button>
       </div>
 
       <div className='main-product-list-a'>
-        {products.map((product,index) => (
-          <div key={product.id} className='product-blocks-a'onClick={()=>navigate(`/primesport/productbuy/${index}`)}>
+        {getallproductinfo.map((item, index) => (
+          <div key={item._id} className='product-blocks-a' onClick={() => navigate(`/primesport/productbuy/${item._id}`)}>
             <div className='image-a'>
-          
+              {/* You can add an image here based on item */}
             </div>
             <div className='caption-a'>
-              <h2>{product.name}</h2>
-              <p>{product.price}</p>
-              <p>{product.caption}</p>
+              <h2>{item.idNumber}</h2>
+              <p>{item.price}</p>
+              <p>{item.caption}</p>
             </div>
           </div>
         ))}

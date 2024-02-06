@@ -1,9 +1,41 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { FaUser, FaStar, FaPlus, FaMinus, FaBook } from 'react-icons/fa';
+import { useParams } from 'react-router-dom';
 import './productbuy.css';
+import { handleproductinfo } from '../handleAPI/handleapis';
 
 const Productbuycomponets = () => {
     const [count, setCount] = useState(0);
+    const [address, setAddress] = useState({
+        localAddress: '',
+        secondaryAddress: '',
+        pinCode: '',
+        state: 'Select Your State'
+    });
+    const [selected, setselected] = useState([]);
+    const { id } = useParams();
+    console.log('Product ID:', id);
+
+    useEffect(() => {
+        const fetchallproductdata = async () => {
+            try {
+                const response = await handleproductinfo();
+                console.log("response in product buy", response);
+    
+                var selecteProduct = response.getresult.filter((item) => item._id === id);
+                setselected(selecteProduct);
+    
+                console.log('selected product is ', selecteProduct);
+            } catch (error) {
+                console.error('Error fetching product data:', error);
+            }
+        }
+    
+        fetchallproductdata();
+    }, [id]);
+   
+
+    console.log("selected products",selected)
 
     const handleIncrease = () => {
         setCount((prev) => prev + 1);
@@ -18,6 +50,14 @@ const Productbuycomponets = () => {
     // Get today's date
     const today = new Date().toLocaleDateString();
 
+    const handleAddressChange = (e) => {
+        const { name, value } = e.target;
+        setAddress((prevAddress) => ({
+            ...prevAddress,
+            [name]: value
+        }));
+    };
+
     return (
         <div className='main-product-info-address'>
             <div className='product-image-a'></div>
@@ -25,14 +65,14 @@ const Productbuycomponets = () => {
             <div className='product-info-address'>
                 <h1>
                     <FaUser style={{ marginRight: '5px' }} />
-                    name
+                    {selected.length > 0 ? selected[0].name : 'Product Name'}
                 </h1>
                 <h1>
                     <FaBook style={{ marginRight: '5px' }} />
-                    captions
+                    {selected.length > 0 ? selected[0].caption : 'Product Caption'}
                 </h1>
                 <h1>
-                    price
+                    $100
                 </h1>
 
                 <div className='star-icons'>
@@ -52,15 +92,34 @@ const Productbuycomponets = () => {
                 </div>
 
                 <div className='main-address-a'>
-                    <input placeholder='enter your local address' />
-                    <input placeholder='enter your secondary address' />
-                    <input placeholder='enter pin code' />
-                    <select>
-                        <option>Select Your State</option>
-                        <option>Maharashtra</option>
-                        <option>Punjab</option>
-                        <option>Kerala</option>
-                        <option>Goa</option>
+                    <input
+                        name='localAddress'
+                        placeholder='enter your local address'
+                        value={address.localAddress}
+                        onChange={handleAddressChange}
+                    />
+                    <input
+                        name='secondaryAddress'
+                        placeholder='enter your secondary address'
+                        value={address.secondaryAddress}
+                        onChange={handleAddressChange}
+                    />
+                    <input
+                        name='pinCode'
+                        placeholder='enter pin code'
+                        value={address.pinCode}
+                        onChange={handleAddressChange}
+                    />
+                    <select
+                        name='state'
+                        value={address.state}
+                        onChange={handleAddressChange}
+                    >
+                        <option value="Select Your State">Select Your State</option>
+                        <option value="Maharashtra">Maharashtra</option>
+                        <option value="Punjab">Punjab</option>
+                        <option value="Kerala">Kerala</option>
+                        <option value="Goa">Goa</option>
                     </select>
 
                     <button>Confirm Buy</button>
