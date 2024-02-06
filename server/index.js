@@ -14,8 +14,7 @@ const loginRouter = require('./router/login.router'); // login
 const getimage = require('./router/sportimage.router'); // Corrected import
 const getproductinfo=require('./router/getproductinfor.Router')   //get all product info
 const getallcitydata=require('./router/getallcity.Router');   // get city and shops address
-
-
+const getallcartsdata=require('./router/getcartsdata.Router')  //   get all carts data info by email
 const setcartsdata=require('./router/setcartsData.Router');
 
 
@@ -29,6 +28,7 @@ app.use('/hooks/getimage', getimage); // Corrected usage
 app.use('/hooks/getallproduct',getproductinfo) // get all product info
 app.use('/hooks/getallcitydata',getallcitydata);   // get all city data
 app.use('/hooks/setcartdata',setcartsdata);     // get all city data
+app.use('/hooks/getcartData',getallcartsdata);  // get all carts data 
 
 
 
