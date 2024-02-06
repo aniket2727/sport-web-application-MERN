@@ -70,9 +70,30 @@ const handleproductinfo= async()=>{
 
 
 
+const handlegetcartsData = async ({email}) => {
+  try {
+    const result = await fetch(`${base_url}/getcartData/getcartData`, {
+      method: 'post',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({ email })
+    });
+
+    const data = await result.json();
+    console.log("the carts data", data);
+    return data;
+  } catch (error) {
+    console.error("Error in fetching data", error);
+  }
+};
+
+
+
 module.exports = {
   handleregister,
   handlelogin,
   handleimagesport,
   handleproductinfo,
+  handlegetcartsData,
 };
