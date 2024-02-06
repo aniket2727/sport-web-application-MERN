@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import './frontpage.css';
 import { useNavigate } from 'react-router-dom';
 import { handleimagesport } from './handleAPI/handleapis';
+import { handleproductinfo } from './handleAPI/handleapis';
 
 const Frontpagecomponets = () => {
   const navigate = useNavigate();
-  const [sportimage,setsportimage]=useState([])
+  const [sportimage, setsportimage] = useState([]);
+  const [getallproductinfo, setallproductinfo] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -18,36 +20,24 @@ const Frontpagecomponets = () => {
       }
     };
 
+    const fetchproductdata = async () => {
+      try {
+        const result = await handleproductinfo();
+        console.log("all product result", result);
+        const formattedData = result.getresult.map(({ sportType, productImage }) => ({ sportType, productImage }));
+        setallproductinfo(formattedData);
+      } catch (error) {
+        console.error('Error fetching product info:', error);
+      }
+    };
+
     fetchData();
+    fetchproductdata();
   }, []);
 
   if (!sportimage || sportimage.length === 0) {
     return <div>Loading...</div>; // or some loading indicator
   }
-
-  const cricketitems = [
-    { ball: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldCUyMGJhdHxlbnwwfHwwfHx8MA%3D%3D" },
-    { ball: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldCUyMGJhdHxlbnwwfHwwfHx8MA%3D%3D" },
-    { ball: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldCUyMGJhdHxlbnwwfHwwfHx8MA%3D%3D" },
-    { ball: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldCUyMGJhdHxlbnwwfHwwfHx8MA%3D%3D" },
-    { ball: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldCUyMGJhdHxlbnwwfHwwfHx8MA%3D%3D" },
-    { ball: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldCUyMGJhdHxlbnwwfHwwfHx8MA%3D%3D" },
-    { ball: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldCUyMGJhdHxlbnwwfHwwfHx8MA%3D%3D" },
-    { ball: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldCUyMGJhdHxlbnwwfHwwfHx8MA%3D%3D" },
-    { ball: "https://images.unsplash.com/photo-1593341646782-e0b495cff86d?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8Y3JpY2tldCUyMGJhdHxlbnwwfHwwfHx8MA%3D%3D" },
-  ];
-
-  const footballitems = [
-    { name: "football", link: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { name: "football", link: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { name: "football", link: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { name: "football", link: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { name: "football", link: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { name: "football", link: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { name: "football", link: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { name: "football", link: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-    { name: "football", link: "https://images.unsplash.com/photo-1589487391730-58f20eb2c308?q=80&w=2074&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" },
-  ];
 
   return (
     <div className='main-front-page-a'>
@@ -79,33 +69,35 @@ const Frontpagecomponets = () => {
 
       <div className='main-small-box-a'>
         <div className='small-box-row'>
-          {cricketitems.map((item, index) => (
+          {getallproductinfo.map((item, index) => (
             <div className='small-box' key={index}>
-              <img src={item.ball} alt={`Cricket Ball ${index + 1}`} 
-              onClick={() => navigate(`/primesport/producttype/${'cricket'}`)}
+              <img src={item.productImage} alt={`Product ${index + 1}`} 
+                onClick={() => navigate(`/primesport/producttype/${item.sportType}`)}
               />
             </div>
           ))}
         </div>
 
         <div className='small-box-row'>
-          {footballitems.map(({ name, link }, index) => (
+          {getallproductinfo.map((item, index) => (
             <div className='small-box' key={index}>
-              <img
-                src={link}
-                alt={`${name} Item`}
+              <img src={item.productImage} alt={`Product ${index + 1}`} 
+                onClick={() => navigate(`/primesport/producttype/${item.sportType}`)}
               />
             </div>
           ))}
         </div>
 
         <div className='small-box-row'>
-          {cricketitems.map((item, index) => (
+          {getallproductinfo.map((item, index) => (
             <div className='small-box' key={index}>
-              <img src={item.ball} alt={`Cricket Ball ${index + 1}`} />
+              <img src={item.productImage} alt={`Product ${index + 1}`} 
+                onClick={() => navigate(`/primesport/producttype/${item.sportType}`)}
+              />
             </div>
           ))}
         </div>
+
       </div>
     </div>
   );

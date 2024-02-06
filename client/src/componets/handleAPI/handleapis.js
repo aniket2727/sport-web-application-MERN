@@ -56,9 +56,23 @@ const handleimagesport = async () => {
 
 
 
+const handleproductinfo= async()=>{
+  try {
+    const result = await fetch(`${base_url}/getallproduct/getallproduct`);
+    const data = await result.json(); // Make sure to await this as well
+    console.log("data in apis", data);
+    return data;
+  } catch (error) {
+    console.error("Error fetching image:", error);
+  }
+
+};
+
+
 
 module.exports = {
   handleregister,
   handlelogin,
   handleimagesport,
+  handleproductinfo,
 };
