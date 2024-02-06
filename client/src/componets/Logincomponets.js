@@ -1,6 +1,6 @@
 // LoginComponent.js
 import React, { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from '../features/userSlice';
 import './login.css';
 import { useNavigate } from 'react-router-dom';
@@ -11,15 +11,23 @@ const LoginComponent = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const dispatch = useDispatch();
+  
+  // Use useSelector to access user information from the Redux store
+  const user = useSelector((state) => state.user);
+  console.log("redux data",user)
 
   const handleLogin = async (e) => {
     e.preventDefault();
-    const result = await handlelogin({ email, pass: password }); // Use 'pass' instead of 'password'
+    const result = await handlelogin({ email, pass: password });
     console.log("handle result", result);
-
+    
     // Check the result and navigate based on your logic
     if (result) {
-      dispatch(loginUser({ email, password }));
+      const { email, token } = result;
+      
+      // Dispatch the loginUser action to store user information in the Redux store
+      dispatch(loginUser({ email, token }));
+      
       setEmail('');
       setPassword('');
       navigate('/primesport/productpagefirst');

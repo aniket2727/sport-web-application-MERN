@@ -20,8 +20,10 @@ function App() {
         <Routes>
           <Route path="/primesport/login" element={<LoginComponent />} />
           <Route path="/primesport/register" element={<Register />} />
+
           <Route path="/primesport/productpagefirst" element={<Frontpagecomponets />} />
           <Route path="/primesport/sporttype/:type" element={<Typeofsports />} />
+          
           <Route path="/primesport/producttype/:type" element={<ProductSelected />} />
           <Route path="/primesport/productbuy/:id" element={<Productbuycomponets />} />
           <Route path="/primesport/cart" element={<Cartcomponets />} />
