@@ -21,21 +21,19 @@ const Productbuycomponets = () => {
             try {
                 const response = await handleproductinfo();
                 console.log("response in product buy", response);
-    
                 var selecteProduct = response.getresult.filter((item) => item._id === id);
                 setselected(selecteProduct);
-    
                 console.log('selected product is ', selecteProduct);
             } catch (error) {
                 console.error('Error fetching product data:', error);
             }
         }
-    
+
         fetchallproductdata();
     }, [id]);
-   
 
-    console.log("selected products",selected)
+
+    console.log("selected products", selected)
 
     const handleIncrease = () => {
         setCount((prev) => prev + 1);
@@ -58,6 +56,18 @@ const Productbuycomponets = () => {
         }));
     };
 
+
+    const handlecartdata = () => {
+        const email = "aniket@gmail.com";
+        const name = selected[0]?.productName || '';
+        const caption = selected[0]?.caption || '';
+        const price = selected[0]?.price || 0;
+        const productId = selected[0]?._id || '';
+
+
+        console.log("cart data",email,name,caption,price,id)
+    }
+
     return (
         <div className='main-product-info-address'>
             <div className='product-image-a'></div>
@@ -65,7 +75,7 @@ const Productbuycomponets = () => {
             <div className='product-info-address'>
                 <h1>
                     <FaUser style={{ marginRight: '5px' }} />
-                    {selected.length > 0 ? selected[0].name : 'Product Name'}
+                    {selected.length > 0 ? selected[0].productName : 'Product Name'}
                 </h1>
                 <h1>
                     <FaBook style={{ marginRight: '5px' }} />
@@ -89,6 +99,11 @@ const Productbuycomponets = () => {
                     <button onClick={handleDecrease}>
                         <FaMinus />
                     </button>
+                </div>
+
+                <div className='main-address-a'>
+                    <button onClick={handlecartdata}>add to cart</button>
+
                 </div>
 
                 <div className='main-address-a'>
