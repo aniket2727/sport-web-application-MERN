@@ -58,14 +58,13 @@ const Productbuycomponets = () => {
 
 
     const handlecartdata = () => {
-        const email = "aniket@gmail.com";
-        const name = selected[0]?.productName || '';
-        const caption = selected[0]?.caption || '';
-        const price = selected[0]?.price || 0;
+        const productemail = "aniket@gmail.com";
+        const productname = selected[0]?.productName || '';
+        const productcaption = selected[0]?.caption || '';
+        const productprice = selected[0]?.price || 0;
         const productId = selected[0]?._id || '';
+        const productimage = selected[0]?._id || '';
 
-
-        console.log("cart data",email,name,caption,price,id)
     }
 
     return (

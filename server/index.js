@@ -13,8 +13,10 @@ const registerRouter = require('./router/register.router'); // register
 const loginRouter = require('./router/login.router'); // login
 const getimage = require('./router/sportimage.router'); // Corrected import
 const getproductinfo=require('./router/getproductinfor.Router')   //get all product info
-const getallcitydata=require('./router/getallcity.Router');
+const getallcitydata=require('./router/getallcity.Router');   // get city and shops address
 
+
+const setcartsdata=require('./router/setcartsData.Router');
 
 
 
@@ -26,6 +28,7 @@ app.use('/hooks/login', loginRouter);  // for the login user
 app.use('/hooks/getimage', getimage); // Corrected usage
 app.use('/hooks/getallproduct',getproductinfo) // get all product info
 app.use('/hooks/getallcitydata',getallcitydata);   // get all city data
+app.use('/hooks/setcartdata',setcartsdata);     // get all city data
 
 
 
